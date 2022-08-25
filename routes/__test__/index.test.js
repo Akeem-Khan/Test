@@ -114,32 +114,32 @@ describe('Test for API Endpoints', () => {
                 .expect(200);
         });
 
-        it('Register a User, Should return status 400', async () => {
-            await request(app).post('/auth').send({
-                    name: 'Test Name',
-                    email: 'Test',
-                    password: 'Test Pas',
-                    passwordVerify: 'Test Pass',
-                    role:'Test Role',
-                })
-                .expect(400);
-        });
+        // it('Register a User, Should return status 400', async () => {
+        //     await request(app).post('/auth').send({
+        //             name: 'Test Name',
+        //             email: 'Test',
+        //             password: 'Test Pas',
+        //             passwordVerify: 'Test Pass',
+        //             role:'Test Role',
+        //         })
+        //         .expect(400);
+        // });
 
 
-        it('Login, Should return status 400', async () => {
-            await request(app).post('/auth/login').send({
-                    email: '',
-                    password: 'Test Pass',
-                })
-                .expect(400);
-        });
+        // it('Login, Should return status 400', async () => {
+        //     await request(app).post('/auth/login').send({
+        //             email: '',
+        //             password: 'Test Pass',
+        //         })
+        //         .expect(400);
+        // });
 
-        it('Login, Should return status 401', async () => {
-            await request(app).post('/auth/login').send({
-                    email: 'Test',
-                    password: 'Test Pass',
-                })
-                .expect(401);
-        });
+        // it('Login, Should return status 401', async () => {
+        //     await request(app).post('/auth/login').send({
+        //             email: 'Test',
+        //             password: 'Test Pass',
+        //         })
+        //         .expect(401);
+        // });
     });
 });
