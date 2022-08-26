@@ -17,18 +17,6 @@ jobs:
       run:
         working-directory: backend
 
-    env:
-      NODE_ENV: DEVELOPMENT
-      PORT: 4000
-      CLIENT_URL: http://localhost:3000
-      MDB_CONNECT: mongodb+srv://Admin:TbxRpM3qMgLhElRt@ist.jcold.mongodb.net/IST?retryWrites=true&w=majority
-      JWT_SECRET: #`tv@euV;z%"9KMkB:\Gq7T>]ycT9.W;
-      JWT_ACCOUNT_ACTIVATION: ASKDJBEJIANEI34U9TIHVBJAEHT
-      EMAIL_USER: akeemkhanx1ur4z@gmail.com
-      EMAIL_PASS: tnemdavvaddezhwk
-      EMAIL_FROM: noreply@mernauth.com
-      JWT_RESET_PASSWORD: jawejn3494
-
     strategy:
       matrix:
         node-version: [16.x]
