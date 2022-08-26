@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     # defaults:
     #   run:
-    #     working-directory: server
+    #     working-directory: backend
 
     env:
       NODE_ENV: DEVELOPMENT
@@ -41,11 +41,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+
+    - name: Change Directory
+      run: cd backend
+
     - name: Install Current Dependencies
       run: npm ci
-      with:
-        working-directory: server
+
     - name: Run Tests
       run: npm test
-      with:
-        working-directory: server
