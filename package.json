@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server": "npx babel-node server.js",
-    "test": "jest --detectOpenHandles"
+    "test": "jest --forceExit"
   },
   "keywords": [],
   "author": "",
