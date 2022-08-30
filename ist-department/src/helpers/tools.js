@@ -4,4 +4,10 @@ function stripSlash(str){
     return str;
 }
 
-export { stripSlash }
+function addSlash(str){
+    if(str.charAt(str.length-1) !== '/')
+        str += '/';
+    return str;
+}
+
+export { stripSlash, addSlash }

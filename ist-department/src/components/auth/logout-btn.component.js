@@ -4,8 +4,8 @@ import axios from "axios";
 
 import AuthContext from "../../context/auth.context";
 
-import { stripSlash } from '../../helpers/tools';
-const server = stripSlash(process.env.REACT_APP_API);
+import { addSlash } from '../../helpers/tools';
+const server = addSlash(process.env.REACT_APP_API);
 
 function LogOutBtn() {
   const { getUser } = useContext(AuthContext);
@@ -13,7 +13,7 @@ function LogOutBtn() {
   const history = useHistory();
 
   async function logOut() {
-    await axios.get(`${server}/auth/logout`);
+    await axios.get(`${server}auth/logout`);
     await getUser();
     history.push("/");
   }

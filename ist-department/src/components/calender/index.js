@@ -40,8 +40,8 @@ import Create from '@mui/icons-material/Create';
 import AppointmentFormContainerBasic from './appointmentForm';
 import AuthContext from "../../context/auth.context";
 
-import { stripSlash } from '../../helpers/tools';
-const server = stripSlash(process.env.REACT_APP_API);
+import { addSlash } from '../../helpers/tools';
+const server = addSlash(process.env.REACT_APP_API);
 
 const appointments = [
     {
@@ -156,7 +156,7 @@ class Calendar extends Component {
         const { user } = this.context 
         try{
           if(user.role === 'faculty'){
-            const appointments = await axios.get(`${server}/appointment/getAllFacultyAppointments/${user.id}`)
+            const appointments = await axios.get(`${server}appointment/getAllFacultyAppointments/${user.id}`)
             const result = appointments.data.result.map((appt)=>{
               if(appt.isAdvisement){
                 if(appt.advisementFor){
@@ -176,7 +176,7 @@ class Calendar extends Component {
                   data: result
               });
           } else {
-            const appointments = await axios.get(`${server}/appointment/getAllAppointmentByOwner/${user.id}`);
+            const appointments = await axios.get(`${server}appointment/getAllAppointmentByOwner/${user.id}`);
             console.log(appointments);
             this.setState({
               user: user,
@@ -224,7 +224,7 @@ class Calendar extends Component {
      async commitDeletedAppointment() {
        try{
         const {  deletedAppointmentId } = this.state;  
-         const result = await axios.delete(`${server}/appointment/deleteAppointment/${deletedAppointmentId}`)
+         const result = await axios.delete(`${server}appointment/deleteAppointment/${deletedAppointmentId}`)
          console.log(result);
          } catch (err) {
              console.log('an Error occured', err)
@@ -263,7 +263,7 @@ class Calendar extends Component {
         if(added){
             try{
                 added.owner = this.state.user.id;
-                const result = await axios.post(`${server}/appointment/create`, added)
+                const result = await axios.post(`${server}appointment/create`, added)
                 this.setState((state)=>{
                     let {data} = state;
                     const startingAddedId = data.length > 0 ? data[data.length - 1]._id + 1 : 0;
@@ -279,7 +279,7 @@ class Calendar extends Component {
         if(changed){
             try{
                 const _id = Object.keys(changed)[0];
-                const result = await axios.put(`${server}/appointment/updateAppointment`, changed[_id])
+                const result = await axios.put(`${server}appointment/updateAppointment`, changed[_id])
                 console.log(result);
                } catch (err) {
                    console.log('an Error occured', err)

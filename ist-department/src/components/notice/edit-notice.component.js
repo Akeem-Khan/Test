@@ -15,8 +15,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Input from '@mui/material/Input';
 
-import { stripSlash } from '../../helpers/tools';
-const server = stripSlash(process.env.REACT_APP_API);
+import { addSlash } from '../../helpers/tools';
+const server = addSlash(process.env.REACT_APP_API);
 
 export default class EditNotice extends Component {
 
@@ -50,7 +50,7 @@ export default class EditNotice extends Component {
     }
 
     componentDidMount() {
-        axios.get(`${server}/notices/${this.props.match.params.id}`)
+        axios.get(`${server}notices/${this.props.match.params.id}`)
             .then(response => {
                 this.setState({
                     title: response.data.title,
@@ -102,12 +102,12 @@ export default class EditNotice extends Component {
             },
         };
 
-        axios.post(`${server}/notices/update/${this.props.match.params.id}`, notice)
+        axios.post(`${server}notices/update/${this.props.match.params.id}`, notice)
             .then(res => console.log(res.data));
     }
 
     onDelete() {
-        axios.delete(`${server}/notices/update/${this.props.match.params.id}`)
+        axios.delete(`${server}notices/update/${this.props.match.params.id}`)
             .then(res => {
                 console.log(res.data);
                 this.props.history.push('/')

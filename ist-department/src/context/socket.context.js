@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
 import socketClient from "socket.io-client";
 
-import { stripSlash } from '../helpers/tools';
-const server = stripSlash(process.env.REACT_APP_API);
+import { addSlash } from '../helpers/tools';
+const server = addSlash(process.env.REACT_APP_API);
 
 const SocketContext = createContext();
 

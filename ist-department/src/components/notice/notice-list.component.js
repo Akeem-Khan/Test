@@ -9,8 +9,8 @@ import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-import { stripSlash } from '../../helpers/tools';
-const server = stripSlash(process.env.REACT_APP_API);
+import { addSlash } from '../../helpers/tools';
+const server = addSlash(process.env.REACT_APP_API);
 
 
 function useForceUpdate() {
@@ -26,7 +26,7 @@ function NoticeList() {
 
 
     useEffect(() => {
-        axios.get(`${server}/notices/`)
+        axios.get(`${server}notices/`)
             .then(response => {
                 setNotices(response.data);
             })
@@ -41,7 +41,7 @@ function NoticeList() {
         notice.flagged.info = `This post was removed by ${user.name}. You can contact this person with the following: ${user.email}`;
         notice.flagged.by = user.email;
 
-        axios.post(`${server}/notices/update/${notice._id}`, notice)
+        axios.post(`${server}notices/update/${notice._id}`, notice)
             .then(res => console.log(res.data));
 
         forceUpdate();
@@ -53,7 +53,7 @@ function NoticeList() {
         notice.flagged.info = '';
         notice.flagged.by = '';
 
-        axios.post(`${server}/notices/update/${notice._id}`, notice)
+        axios.post(`${server}notices/update/${notice._id}`, notice)
             .then(res => console.log(res.data));
 
         forceUpdate();
