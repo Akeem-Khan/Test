@@ -128,11 +128,4 @@ describe('Test for API Endpoints', () => {
                 .expect(401);
         });
     });
-
-    describe("Live Test", () => {
-        it('Get all Notices, Should return status 200', async () => {
-            await request('http://localhost:4000').get('/notices')
-                .expect(200);
-        });
-    });
 });

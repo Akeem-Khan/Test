@@ -46,10 +46,10 @@ jobs:
     - name: Install Current Dependencies
       run: npm ci
 
-    - name: Start Server
-      run: |
-        npm run server &
-        sleep 30
+    # - name: Start Server
+    #   run: |
+    #     npm run server &
+    #     sleep 30
 
     - name: Run Tests
       run: npm test
