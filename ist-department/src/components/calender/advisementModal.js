@@ -10,8 +10,7 @@ import axios from 'axios';
 import MenuItem from '@mui/material/MenuItem';
 import format from 'date-fns/format'
 
-import { addSlash } from '../../helpers/tools';
-const server = addSlash(process.env.REACT_APP_API);
+const server = process.env.REACT_APP_API;
 
 export default function FormDialog(props) {
   const [advisements, setAdvisements] = React.useState([]);

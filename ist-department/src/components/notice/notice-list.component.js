@@ -9,8 +9,7 @@ import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-import { addSlash } from '../../helpers/tools';
-const server = addSlash(process.env.REACT_APP_API);
+const server = process.env.REACT_APP_API;
 
 
 function useForceUpdate() {
@@ -65,7 +64,7 @@ function NoticeList() {
             <Card className='mb-2'>
                 <CardContent>
                     <Typography variant="h4" component="div">
-                        Notices
+                        Notices {server}
                     </Typography>
                     {
                         notices && notices.map(notice => {

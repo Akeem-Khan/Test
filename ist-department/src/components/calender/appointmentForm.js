@@ -25,8 +25,7 @@ import InputLabel from '@mui/material/InputLabel';
 import add from 'date-fns/add';
 import axios from 'axios';
 
-import { addSlash } from '../../helpers/tools';
-const server = addSlash(process.env.REACT_APP_API);
+const server = process.env.REACT_APP_API;
 
 const PREFIX = 'Appointment';
 const classes = {

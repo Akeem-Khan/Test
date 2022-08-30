@@ -31,9 +31,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteChatDialog from './delete-chat-dialog.component';
 import Stack from '@mui/material/Stack';
 
-import { addSlash } from '../../helpers/tools';
-const server = addSlash(process.env.REACT_APP_API);
-
+const server = process.env.REACT_APP_API;
 
 function Chat() {
     const [open, setOpen] = React.useState(false);

@@ -4,8 +4,7 @@ import axios from "axios";
 
 import AuthContext from "../../context/auth.context";
 
-import { addSlash } from '../../helpers/tools';
-const server = addSlash(process.env.REACT_APP_API);
+const server = process.env.REACT_APP_API;
 
 function LogOutBtn() {
   const { getUser } = useContext(AuthContext);
