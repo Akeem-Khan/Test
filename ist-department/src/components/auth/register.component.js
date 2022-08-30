@@ -12,6 +12,9 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useStyles from './styles';
 
+import { stripSlash } from '../../helpers/tools';
+const server = stripSlash(process.env.REACT_APP_API);
+
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -65,7 +68,7 @@ function Register() {
           role: 'student',
         };
 
-        await axios.post(`${process.env.REACT_APP_API}/auth/`, registerData);
+        await axios.post(`${server}/auth/`, registerData);
         await getUser();
 
         setButtonText("Email Sent");
@@ -84,7 +87,7 @@ function Register() {
           role: 'faculty',
         };
 
-        await axios.post(`${process.env.REACT_APP_API}/auth/`, registerData);
+        await axios.post(`${server}/auth/`, registerData);
         await getUser();
 
         setButtonText("Email Sent");

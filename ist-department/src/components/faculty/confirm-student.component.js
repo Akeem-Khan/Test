@@ -20,6 +20,10 @@ import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
+
+import { stripSlash } from '../../helpers/tools';
+const server = stripSlash(process.env.REACT_APP_API);
+
 function useForceUpdate() {
     const [value, setValue] = useState(0); // integer state
     return () => setValue(value => value + 1); // update the state to force render
@@ -31,7 +35,7 @@ function UserList() {
     const forceUpdate = useForceUpdate();
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API}/auth/confirm`)
+        axios.get(`${server}/auth/confirm`)
             .then(res => {
                 setStudents(res.data);
             })
@@ -45,7 +49,7 @@ function UserList() {
             role: 'student_leader'
         };
 
-        axios.post(`${process.env.REACT_APP_API}/auth/update/${id}`, role)
+        axios.post(`${server}/auth/update/${id}`, role)
             .catch(err => {
                 console.log(err);
                 return;
@@ -65,7 +69,7 @@ function UserList() {
             role: 'pending'
         };
 
-        axios.post(`${process.env.REACT_APP_API}/auth/update/${id}`, role)
+        axios.post(`${server}/auth/update/${id}`, role)
             .catch(err => {
                 console.log(err);
                 return;

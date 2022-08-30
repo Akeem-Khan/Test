@@ -1,8 +1,10 @@
 import io from "socket.io-client";
 import axios from "axios";
 
+import { stripSlash } from '../../helpers/tools';
+
 let socket;
-const SOCKET_URL = process.env.REACT_APP_API;
+const SOCKET_URL = stripSlash(process.env.REACT_APP_API);
 
 export const initiateSocket = (channel, nickname) => {
  socket = io(SOCKET_URL, {

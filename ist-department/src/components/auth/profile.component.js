@@ -18,6 +18,11 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import BadgeIcon from '@mui/icons-material/Badge';
 import EmailIcon from '@mui/icons-material/Email';
+
+import { stripSlash } from '../../helpers/tools';
+const server = stripSlash(process.env.REACT_APP_API);
+
+
 function useForceUpdate() {
     const [value, setValue] = useState(0); // integer state
     return () => setValue(value => value + 1); // update the state to force render
@@ -29,7 +34,7 @@ function Profile() {
     const forceUpdate = useForceUpdate();
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API}/notices/`)
+        axios.get(`${server}/notices/`)
             .then(response => {
                 setNotices(response.data);
             })
@@ -43,7 +48,7 @@ function Profile() {
             role: 'pending'
         };
 
-        axios.post(`${process.env.REACT_APP_API}/auth/update/${user.id}`, role)
+        axios.post(`${server}/auth/update/${user.id}`, role)
             .then(res => {
                 getUser();
             })
@@ -59,7 +64,7 @@ function Profile() {
             role: 'student'
         };
 
-        axios.post(`${process.env.REACT_APP_API}/auth/update/${user.id}`, role)
+        axios.post(`${server}/auth/update/${user.id}`, role)
             .then(res => {
                 getUser();
             })
@@ -75,7 +80,7 @@ function Profile() {
         notice.flagged.info = '';
         notice.flagged.by = '';
 
-        axios.post(`${process.env.REACT_APP_API}/notices/update/${notice._id}`, notice)
+        axios.post(`${server}/notices/update/${notice._id}`, notice)
             .then(res => console.log(res.data));
 
         forceUpdate();

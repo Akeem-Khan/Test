@@ -3,6 +3,9 @@ const Schema = mongoose.Schema;
 
 const Appointment = new Schema({
     title: {type: String},
+    isAdvisement: {type: Boolean},
+    advisementFor: {type: Schema.Types.ObjectId, ref: 'User'},
+    isBooked: {type: Boolean, default: false},
     owner: {type: Schema.Types.ObjectId, ref: 'User'},
     startDate: {type: Date},
     endDate: {type: Date},

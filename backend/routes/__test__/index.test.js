@@ -1,16 +1,21 @@
 const app = require('../../app');
 const request = require('supertest');
+
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
+
 describe('Test for API Endpoints', () => {
     beforeAll(async () => {
         const mongoServer = await MongoMemoryServer.create();
         await mongoose.connect(mongoServer.getUri(), { useNewUrlParser: true, useUnifiedTopology: true });
     });
+
     afterAll(async () => {
         await mongoose.disconnect();
         await mongoose.connection.close();
     })
+
+
     describe('Notice Routes', () => {
         it('Get all Notices, Should return status 200', async () => {
             await request(app).get('/notices')
@@ -22,10 +27,12 @@ describe('Test for API Endpoints', () => {
             await request(app).get('/notices/61230927a4522c39b02fbe37')
                 .expect(200);
         });
+
         it('Get a Notice, Should return status 500', async () => {
             await request(app).get('/notices/123')
                 .expect(500);
         });
+
     
         it('Add a Notice, Should return status 201', async () => {
             await request(app).post('/notices/add').send({
@@ -41,6 +48,7 @@ describe('Test for API Endpoints', () => {
                 })
                 .expect(201);
         });
+
         it('Add a Notice, Should return status 400', async () => {
             await request(app).post('/notices/add').send({
                     title: '',
@@ -71,6 +79,7 @@ describe('Test for API Endpoints', () => {
                 })
                 .expect(500);
         });
+
         it('Update a Notice, Should return status 400', async () => {
             await request(app).post('/notices/update/61230927a4522c39b02fbe37').send({
                     title: '',
@@ -86,6 +95,7 @@ describe('Test for API Endpoints', () => {
                 .expect(400);
         });
     
+
         it('Delete a Notice, Should return status 500', async () => {
             await request(app).delete('/notices/update/123')
                 .expect(500);
@@ -103,6 +113,7 @@ describe('Test for API Endpoints', () => {
                 })
                 .expect(200);
         });
+
         it('Register a User, Should return status 400', async () => {
             await request(app).post('/auth').send({
                     name: 'Test Name',
@@ -113,6 +124,8 @@ describe('Test for API Endpoints', () => {
                 })
                 .expect(400);
         });
+
+
         it('Login, Should return status 400', async () => {
             await request(app).post('/auth/login').send({
                     email: '',
@@ -120,6 +133,7 @@ describe('Test for API Endpoints', () => {
                 })
                 .expect(400);
         });
+
         it('Login, Should return status 401', async () => {
             await request(app).post('/auth/login').send({
                     email: 'Test',

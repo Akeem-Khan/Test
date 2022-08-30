@@ -8,12 +8,14 @@ import socketClient from "socket.io-client";
 import { UsersContextProvider } from "./context/users.context";
 import { SocketContextProvider } from "./context/socket.context";
 
+import { stripSlash } from './helpers/tools';
+
 const dotenv = require('dotenv');
 dotenv.config();
 
 axios.defaults.withCredentials = true;
 
-const SERVER = process.env.REACT_APP_API;
+const SERVER = stripSlash(process.env.REACT_APP_API);
 class App extends Component {
 
   render() {

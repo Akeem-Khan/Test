@@ -10,6 +10,9 @@ import axios from 'axios';
 import MenuItem from '@mui/material/MenuItem';
 import format from 'date-fns/format'
 
+import { stripSlash } from '../../helpers/tools';
+const server = stripSlash(process.env.REACT_APP_API);
+
 export default function FormDialog(props) {
   const [advisements, setAdvisements] = React.useState([]);
   const [advisors, setAdvisors] = React.useState([]);
@@ -25,10 +28,10 @@ export default function FormDialog(props) {
 
   const fetchData = () =>{
     try{
-        axios.get(`${process.env.REACT_APP_API}/appointment/getAllFacultyAdvisements`).then((results)=>
+        axios.get(`${server}/appointment/getAllFacultyAdvisements`).then((results)=>
         setAdvisements(results.data.result)
         )
-        axios.get(`${process.env.REACT_APP_API}/auth/allFaculty`).then((faculty)=>
+        axios.get(`${server}/auth/allFaculty`).then((faculty)=>
         setAdvisors(faculty.data.result)
         )
         console.log('advisors', advisors)
@@ -57,7 +60,7 @@ export default function FormDialog(props) {
         console.log(booking);
         const studentBooking = {title: `Advisement with ${booking.owner.name}`,owner: user.id, startDate: booking.startDate, endDate: booking.endDate, location: booking.location,}
         const theData = {booking: studentBooking, advisement: {...booking, isBooked: true, advisementFor: user.id}, student: user, faculty: booking.owner}
-     const confirmedBooking = await axios.post(`${process.env.REACT_APP_API}/appointment/confirmBooking`, theData )
+     const confirmedBooking = await axios.post(`${server}/appointment/confirmBooking`, theData )
      console.log(confirmedBooking)
      handleClose()
     } catch(e){
