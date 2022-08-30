@@ -19,8 +19,7 @@ import IconButton from '@mui/material/IconButton';
 import BadgeIcon from '@mui/icons-material/Badge';
 import EmailIcon from '@mui/icons-material/Email';
 
-import { addSlash } from '../../helpers/tools';
-const server = addSlash(process.env.REACT_APP_API);
+const server = process.env.REACT_APP_API;
 
 
 function useForceUpdate() {

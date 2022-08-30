@@ -40,8 +40,7 @@ import Create from '@mui/icons-material/Create';
 import AppointmentFormContainerBasic from './appointmentForm';
 import AuthContext from "../../context/auth.context";
 
-import { addSlash } from '../../helpers/tools';
-const server = addSlash(process.env.REACT_APP_API);
+const server = process.env.REACT_APP_API;
 
 const appointments = [
     {

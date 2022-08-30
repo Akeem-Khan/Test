@@ -21,8 +21,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 
-import { addSlash } from '../../helpers/tools';
-const server = addSlash(process.env.REACT_APP_API);
+const server = process.env.REACT_APP_API;
 
 function useForceUpdate() {
     const [value, setValue] = useState(0); // integer state
