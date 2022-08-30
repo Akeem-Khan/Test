@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const app = require('./app');
-
+import chatModel from './models/chat.model';
 
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
@@ -53,4 +53,8 @@ io.on('connection', (socket) => { // socket object may be used to send specific 
 
             });
     });
+});
+
+app.get('/welcome', (req, res) => {
+    res.status(200).send({message: "Welcome to IST-Department's Backend API"})
 });

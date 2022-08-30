@@ -11,6 +11,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import { stripSlash } from '../../helpers/tools';
+const server = stripSlash(process.env.REACT_APP_API);
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +30,7 @@ function Login() {
         password,
       };
 
-      await axios.post(`${process.env.REACT_APP_API}/auth/login`, loginData);
+      await axios.post(`${server}/auth/login`, loginData);
       await getUser();
       history.push("/");
     } catch (err) {

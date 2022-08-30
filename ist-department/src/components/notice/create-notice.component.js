@@ -15,6 +15,10 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Input from '@mui/material/Input';
+
+import { stripSlash } from '../../helpers/tools';
+const server = stripSlash(process.env.REACT_APP_API);
+
 function CreateNotice() {
     const { user } = useContext(AuthContext);
 
@@ -42,7 +46,7 @@ function CreateNotice() {
             }
         };
 
-        await axios.post(`${process.env.REACT_APP_API}/notices/add`, newNotice);
+        await axios.post(`${server}/notices/add`, newNotice);
 
         setTitle("");
         setText("");
