@@ -19,8 +19,8 @@ import IconButton from '@mui/material/IconButton';
 import BadgeIcon from '@mui/icons-material/Badge';
 import EmailIcon from '@mui/icons-material/Email';
 
-import { stripSlash } from '../../helpers/tools';
-const server = stripSlash(process.env.REACT_APP_API);
+import { addSlash } from '../../helpers/tools';
+const server = addSlash(process.env.REACT_APP_API);
 
 
 function useForceUpdate() {
@@ -34,7 +34,7 @@ function Profile() {
     const forceUpdate = useForceUpdate();
 
     useEffect(() => {
-        axios.get(`${server}/notices/`)
+        axios.get(`${server}notices/`)
             .then(response => {
                 setNotices(response.data);
             })
@@ -48,7 +48,7 @@ function Profile() {
             role: 'pending'
         };
 
-        axios.post(`${server}/auth/update/${user.id}`, role)
+        axios.post(`${server}auth/update/${user.id}`, role)
             .then(res => {
                 getUser();
             })
@@ -64,7 +64,7 @@ function Profile() {
             role: 'student'
         };
 
-        axios.post(`${server}/auth/update/${user.id}`, role)
+        axios.post(`${server}auth/update/${user.id}`, role)
             .then(res => {
                 getUser();
             })
@@ -80,7 +80,7 @@ function Profile() {
         notice.flagged.info = '';
         notice.flagged.by = '';
 
-        axios.post(`${server}/notices/update/${notice._id}`, notice)
+        axios.post(`${server}notices/update/${notice._id}`, notice)
             .then(res => console.log(res.data));
 
         forceUpdate();

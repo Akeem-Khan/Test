@@ -1,10 +1,10 @@
 import io from "socket.io-client";
 import axios from "axios";
 
-import { stripSlash } from '../../helpers/tools';
+import { addSlash } from '../../helpers/tools';
 
 let socket;
-const SOCKET_URL = stripSlash(process.env.REACT_APP_API);
+const SOCKET_URL = addSlash(process.env.REACT_APP_API);
 
 export const initiateSocket = (channel, nickname) => {
  socket = io(SOCKET_URL, {
@@ -42,14 +42,14 @@ export const sendMessage = (data) => {
 };
 
 export const fetchChannels = async () => {
- const response = await axios.get(`${SOCKET_URL}/getChannels`);
+ const response = await axios.get(`${SOCKET_URL}getChannels`);
 
  return response.data.channels;
 };
 
 export const fetchChannelMessages = async (channel) => {
  const response = await axios.get(
-   `${SOCKET_URL}/channels/${channel}/messages`
+   `${SOCKET_URL}channels/${channel}/messages`
  );
 
  return response.data.allMessages;

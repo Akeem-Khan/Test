@@ -31,8 +31,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteChatDialog from './delete-chat-dialog.component';
 import Stack from '@mui/material/Stack';
 
-import { stripSlash } from '../../helpers/tools';
-const server = stripSlash(process.env.REACT_APP_API);
+import { addSlash } from '../../helpers/tools';
+const server = addSlash(process.env.REACT_APP_API);
 
 
 function Chat() {
@@ -47,7 +47,7 @@ function Chat() {
     const [selectedValue, setSelectedValue] = useState(null);
 
     socket.on('message', record => {
-        axios.get(`${server}/chat/all/user/${user.id}`)
+        axios.get(`${server}chat/all/user/${user.id}`)
             .then(response => {
                 let chats = getOtherUsers(response.data)
                 setChats(chats);
@@ -113,7 +113,7 @@ function Chat() {
     const getChats = () => {
 
 
-        axios.get(`${server}/chat/all/user/${user.id}`)
+        axios.get(`${server}chat/all/user/${user.id}`)
             .then(response => {
                 let chats = getOtherUsers(response.data)
                 setChats(chats);
@@ -125,7 +125,7 @@ function Chat() {
     }
 
     useEffect(() => {
-        const usersRes = axios.get(`${server}/auth/all`).then(usersRes => {
+        const usersRes = axios.get(`${server}auth/all`).then(usersRes => {
         })
 
 

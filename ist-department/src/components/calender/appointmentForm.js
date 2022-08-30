@@ -25,8 +25,8 @@ import InputLabel from '@mui/material/InputLabel';
 import add from 'date-fns/add';
 import axios from 'axios';
 
-import { stripSlash } from '../../helpers/tools';
-const server = stripSlash(process.env.REACT_APP_API);
+import { addSlash } from '../../helpers/tools';
+const server = addSlash(process.env.REACT_APP_API);
 
 const PREFIX = 'Appointment';
 const classes = {
@@ -116,7 +116,7 @@ export default class AppointmentFormContainerBasic extends Component {
 
   async  componentDidMount(){
         try{
-          const students = await axios.get(`${server}/auth/AllStudents`);
+          const students = await axios.get(`${server}auth/AllStudents`);
           this.setState({students: students.data.result})
         } catch(e){
           console.log(e)

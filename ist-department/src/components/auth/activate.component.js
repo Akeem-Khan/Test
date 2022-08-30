@@ -4,9 +4,9 @@ import jwt from 'jsonwebtoken';
 import { useHistory } from "react-router-dom";
 import AuthContext from "../../context/auth.context";
 
-import { stripSlash } from "../../helpers/tools";
+import { addSlash } from "../../helpers/tools";
 
-const server = stripSlash(process.env.REACT_APP_API);
+const server = addSlash(process.env.REACT_APP_API);
 
 const Activate = ({ match }) => {
     const [values, setValues] = useState({
@@ -34,7 +34,7 @@ const Activate = ({ match }) => {
         setValues({...values, buttonText:'Activating'});
 
         axios
-            .post(`${server}/auth/account-activation`, {
+            .post(`${server}auth/account-activation`, {
                 token
             })
             .then((response) => {
