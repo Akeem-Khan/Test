@@ -19,7 +19,7 @@ describe('Test for API Endpoints', () => {
     describe('Notice Routes', () => {
         it('Get all Notices, Should return status 200', async () => {
             await request(app).get('/notices')
-                .expect(500);
+                .expect(200);
         });
 
 
